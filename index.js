@@ -3,13 +3,17 @@ import dotenv from 'dotenv';
 import connectDB from './db.js';
 import authRoutes from './routes/authRoutes.js';
 import problemRoutes from './routes/problemRoutes.js';
-
+import cors from 'cors';
 // Initialize environment variables
 dotenv.config();
 
 // Initialize the app
 const app = express();
-
+const allowedOrigins = ['https://frontend-codequiz.vercel.app'];
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true,
+}));
 // Connect to the database
 connectDB();
 
